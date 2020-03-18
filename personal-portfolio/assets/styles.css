@@ -1,3 +1,8 @@
+.desc {
+    vertical-align: top;
+    width: 800px;
+}
+
 .title {
     color: blue;
 }
@@ -11,20 +16,20 @@
     font-style: italic;
 }
 
-table, td, tr {
-    border: 1px  black;
-}
-
-table .year {
+.experience-table td:first-child {
     color: blueviolet;
     width: 100px;
     vertical-align: top;
+}
+
+table, td, tr {
+    border: 1px  black;
 }
 
 .details-title {
     text-decoration: underline;
 }
 
-.label {
+form label {
     font-style: italic;
 }
