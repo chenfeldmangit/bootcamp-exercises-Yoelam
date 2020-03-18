@@ -1,0 +1,30 @@
+.title {
+    color: blue;
+}
+
+.profession {
+    color: chocolate;
+}
+
+#experience {
+    font-weight: bold;
+    font-style: italic;
+}
+
+table, td, tr {
+    border: 1px  black;
+}
+
+table .year {
+    color: blueviolet;
+    width: 100px;
+    vertical-align: top;
+}
+
+.details-title {
+    text-decoration: underline;
+}
+
+.label {
+    font-style: italic;
+}

@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Guthrie</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<h1>Guthrie Govan</h1>
-<h2>Musician and World class Guitar Player</h2>
+
+<h1 class="title">Guthrie Govan</h1>
+<h2 class="profession">Musician and World class Guitar Player</h2>
 <img src="assets/320px-Guthrie_Govan_Stirling_Elmendorf_2019.jpg" height="240" width="160">
 
-<h2>Experience</h2>
+<h2 id="experience">Experience</h2>
 <hr>
 
 <table style="width:100%">
     <tr>
-        <td>2013</td>
+        <td class="year">2013</td>
         <td>dfdfdffd</td>
     </tr>
     <tr>
-        <td>2011</td>
+        <td class="year">2011</td>
         <td>Govan announced a new tour with a new band The Aristocrats, featuring Bryan Beller on bass and Marco Minnemann on drums.</td>
     </tr>
     <tr>
-        <td>1993</td>
+        <td class="year">1993</td>
         <td>
             Won Guitarist magazine's "Guitarist of the Year" competition with his instrumental piece Wonderful Slippery Thing.
             <p>A version of this song was included on his debut solo album</p>
@@ -30,15 +32,15 @@
     </tr>
 </table>
 
-<p>
+<p class="details-title">
     Please enter your details here:
 </p>
 <form action="/submit" method="get">
-    <label for="fname">First Name:</label><br>
+    <label for="fname" class="label">First Name:</label><br>
     <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last name:</label><br>
+    <label for="lname" class="label">Last name:</label><br>
     <input type="text" id="lname" name="lname"><br><br>
-    <label for="email">Email:</label><br>
+    <label for="email" class="label">Email:</label><br>
     <input type="email" id="email" name="email"><br><br>
     <input type="submit" value="Submit">
 </form>
