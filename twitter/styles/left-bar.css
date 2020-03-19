@@ -7,6 +7,10 @@
     padding-right: 0.8em;
 }
 
+.fixed {
+    position: fixed;
+}
+
 .left-menu a {
     text-decoration: none;
 }
