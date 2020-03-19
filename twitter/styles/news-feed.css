@@ -8,7 +8,12 @@
     flex-direction: column;
     border-left: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
-    width: 40%;
+    width: 50%;
+    padding-right: 10px;
+    padding-left: 10px;
+    #overflow-y: scroll;
+    #overflow-x: visible;
+    word-wrap: break-word;
 }
 
 .feed-item {
@@ -17,19 +22,17 @@
     justify-content: flex-start;
 }
 
-.feed-item img {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.feed-item div {
-    margin-left: 5px;
-    margin-right: 5px;
+.feed-item-content {
+    margin-left: 10px;
     margin-bottom: 20px;
     vertical-align: top;
+    width: 100%;
 }
 
-.feed-item-text h3, .feed-item-text p {
+.feed-item-multimedia {
+    max-width: 100%;
+}
+.feed-item-text h3, p {
     margin-top: 0;
     margin-bottom: 10px;
 }
