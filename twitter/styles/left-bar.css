@@ -1,0 +1,57 @@
+
+.left-menu {
+    font-family: system-ui, Roboto, Ubuntu, sans-serif;
+    font-size: 19px;
+    width: 12em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.left-menu a {
+    text-decoration: none;
+}
+
+.menu-item {
+    color: rgb(20, 23, 26);
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    #justify-content: space-around;
+    padding: 14px;
+    #align-items: center;
+    #line-height: 25px;
+}
+
+.logo {
+    fill: rgb(29, 161, 242);
+    padding-top: 5px;
+}
+
+.menu-item img, svg {
+    height: 26px;
+    width: 26px;
+}
+
+.menu-item span {
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.menu-item button {
+    width: 100%;
+    background-color: rgb(29, 161, 242);
+    color: white;
+
+}
+
+#tweet {
+    width: 100%;
+    height: 50px;
+    background: rgb(29, 161, 242);
+    color: white;
+    margin: 0;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+}
