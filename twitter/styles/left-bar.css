@@ -5,6 +5,7 @@
     width: 15%;
     padding-left: 1em;
     padding-right: 0.8em;
+    margin-right: 0.5em;
 }
 
 .fixed {
@@ -20,7 +21,7 @@
     padding-top: 5px;
 }
 
-.menu-item {
+.left-bar-item {
     color: rgb(20, 23, 26);
     font-weight: 700;
     display: flex;
@@ -31,7 +32,12 @@
     #line-height: 25px;
 }
 
-.menu-item img, svg {
+.menu-item:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+    border-radius: 1.4em;
+}
+
+.left-bar-item img, .left-bar-item svg {
     height: 26px;
     width: 26px;
 }
@@ -51,4 +57,8 @@
     text-align: center;
     line-height: 2.5em;
     font-size: 0.8em;
+}
+
+#tweet:hover {
+    filter: brightness(90%);
 }
