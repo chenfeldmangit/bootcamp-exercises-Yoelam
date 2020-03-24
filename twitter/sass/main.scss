@@ -1,0 +1,145 @@
+@import 'colors';
+@import 'font';
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.left-menu {
+  width: 14%;
+  font-family: $primary-font;
+  font-size: 19px;
+  padding-left: 1em;
+  padding-right: 0.8em;
+  margin-right: 0.5em;
+
+  .logo {
+    fill: $light-color;
+    padding-top: 5px;
+  }
+
+  .fixed {
+    position: fixed;
+
+    .left-bar-item {
+      color: $primary-color;
+      font-weight: 700;
+      display: flex;
+      flex-direction: row;
+      #justify-content: space-around;
+      padding: 0.7em;
+      align-items: center;
+      #line-height: 25px;
+
+      img, svg {
+        height: 26px;
+        width: 26px;
+      }
+    }
+
+    .menu-item:hover {
+      background-color: rgba(29, 161, 242, 0.1);
+      border-radius: 1.4em;
+    }
+
+    .menu-item span {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+
+    #tweet {
+      width: 100%;
+      height: 2.6em;
+      background: $light-color;
+      color: white;
+      margin: 0;
+      border-radius: 1.6em;
+      text-align: center;
+      line-height: 2.5em;
+      font-size: 0.8em;
+    }
+
+    #tweet:hover {
+      filter: brightness(90%);
+    }
+  }
+}
+
+.feed {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  #overflow-y: scroll;
+  #overflow-x: visible;
+  word-wrap: break-word;
+
+  .home {
+    font-family: system-ui, Roboto, Ubuntu, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    padding: 1em;
+  }
+
+  .feed-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-top: 1px solid lightgrey;
+    padding-top: 1em;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .feed-item-content {
+      margin-left: 10px;
+      margin-bottom: 20px;
+      vertical-align: top;
+      width: 100%;
+
+      .feed-item-multimedia {
+        max-width: 100%;
+      }
+      .feed-item-text h3, p {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .interaction-banner {
+        height: 30px;
+        width: 30px;
+
+        .like {
+          fill-opacity: 0.5;
+          padding: 20%;
+          width: 70%;
+          height: 70%;
+        }
+
+        .like:hover {
+          fill: red;
+          background-color: rgba(255, 0, 0, 0.1);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.trends {
+  width: 14%;
+  font-size: 16px;
+  height: 20em;
+  border: 1px solid black;
+  margin: 1em;
+}
