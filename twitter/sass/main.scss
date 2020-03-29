@@ -18,21 +18,19 @@
   padding-right: 0.8em;
   margin-right: 0.5em;
 
-  .logo {
-    fill: $light-color;
-    padding-top: 5px;
-  }
-
   .fixed {
     position: fixed;
 
-    .left-bar-item {
+    #logo {
+      padding: 0.9em;
+    }
+
+    .item-container {
+      display: flex;
       color: $primary-color;
       font-weight: 700;
-      display: flex;
-      flex-direction: row;
       #justify-content: space-around;
-      padding: 0.7em;
+      padding: 0.4em;
       align-items: center;
       #line-height: 25px;
 
@@ -42,9 +40,17 @@
       }
     }
 
-    .menu-item:hover {
-      background-color: rgba(29, 161, 242, 0.1);
-      border-radius: 1.4em;
+    .menu-item {
+      color: $primary-color;
+      font-weight: 700;
+      display: flex;
+      padding: 0.5em;
+      align-items: center;
+      &:hover {
+        background-color: rgba(29, 161, 242, 0.1);
+        border-radius: 1.4em;
+        cursor: pointer;
+      }
     }
 
     .menu-item span {
@@ -62,74 +68,142 @@
       text-align: center;
       line-height: 2.5em;
       font-size: 0.8em;
-    }
-
-    #tweet:hover {
-      filter: brightness(90%);
+      &:hover {
+        filter: brightness(90%);
+      }
     }
   }
 }
 
-.feed {
-  width: 45%;
+#mainPage {
+  width: 40%;
   display: flex;
   flex-direction: column;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
-  #overflow-y: scroll;
-  #overflow-x: visible;
-  word-wrap: break-word;
 
-  .home {
-    font-family: system-ui, Roboto, Ubuntu, sans-serif;
-    font-size: 19px;
-    font-weight: 900;
-    padding: 1em;
-  }
-
-  .feed-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    border-top: 1px solid lightgrey;
-    padding-top: 1em;
-    padding-right: 10px;
-    padding-left: 10px;
-
-    .icon {
-      width: 50px;
-      height: 50px;
+  #profileContainer {
+    &.hidden {
+      display: none;
     }
 
-    .feed-item-content {
-      margin-left: 10px;
-      margin-bottom: 20px;
-      vertical-align: top;
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: $primary-font;
+    font-size: 19px;
+    color: $primary-color;
+    width: 100%;
 
-      .feed-item-multimedia {
-        max-width: 100%;
+    #description {
+      padding-left: 1em;
+    }
+
+    #title {
+      padding-left: 1em;
+    }
+
+    .name {
+      font-weight: 900;
+      padding-top: 0.5em;
+      padding-bottom: 1em;
+    }
+
+    #profileTweets {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tweets-title {
+      padding: 1em 2em;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgb(90, 90, 90);
+      #border-bottom: 1px solid lightgrey;
+    }
+
+    .about {
+      font-size: 16px;
+    }
+
+    #coverImg {
+      height: 200px;
+    }
+
+    #profileImg {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      top: -70px;
+      left: 20px;
+      border: 4px solid white;
+      margin-bottom: -70px;
+    }
+  }
+
+  #feedContainer {
+
+    &.hidden {
+      display: none;
+    }
+
+
+    #overflow-y: scroll;
+    #overflow-x: visible;
+    word-wrap: break-word;
+
+    .home {
+      font-family: system-ui, Roboto, Ubuntu, sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      padding: 1em;
+    }
+
+    .feed-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      border-top: 1px solid lightgrey;
+      padding-top: 1em;
+      padding-right: 10px;
+      padding-left: 10px;
+
+      .icon {
+        width: 50px;
+        height: 50px;
       }
-      .feed-item-text h3, p {
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
 
-      .interaction-banner {
-        height: 30px;
-        width: 30px;
+      .feed-item-content {
+        margin-left: 10px;
+        margin-bottom: 20px;
+        vertical-align: top;
+        width: 100%;
 
-        .like {
-          fill-opacity: 0.5;
-          padding: 20%;
-          width: 70%;
-          height: 70%;
+        .feed-item-multimedia {
+          max-width: 100%;
         }
 
-        .like:hover {
-          fill: red;
-          background-color: rgba(255, 0, 0, 0.1);
-          border-radius: 50%;
+        .feed-item-text h3, p {
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+
+
+        .interaction-banner {
+          height: 30px;
+          width: 30px;
+
+          .like {
+            fill-opacity: 0.5;
+            padding: 20%;
+            width: 70%;
+            height: 70%;
+
+            &:hover {
+              fill: red;
+              background-color: rgba(255, 0, 0, 0.1);
+              border-radius: 50%;
+            }
+          }
         }
       }
     }
@@ -142,4 +216,65 @@
   height: 20em;
   border: 1px solid black;
   margin: 1em;
+}
+
+.tweet-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-top: 1px solid lightgrey;
+    padding-top: 1em;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    #icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .content {
+      margin-left: 10px;
+      margin-bottom: 20px;
+      vertical-align: top;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      #feedItemMultimedia {
+        max-width: 100%;
+      }
+
+      .feed-item-text {
+
+      }
+
+      #feedItemTitle {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      #tweetText {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-family: "Times New Roman";
+      }
+
+      .interaction-banner {
+        height: 30px;
+        width: 30px;
+        margin-top: 4px;
+        .like {
+          fill-opacity: 0.5;
+          padding: 20%;
+          width: 70%;
+          height: 70%;
+          &:hover {
+            fill: red;
+            background-color: rgba(255, 0, 0, 0.1);
+            border-radius: 50%;
+          }
+        }
+      }
+    }
 }
