@@ -68,8 +68,10 @@
                 </div>
             </div>
 
-            <div class="item-container">
-                <span id="tweet">Tweet</span>
+            <div class="item-container" >
+                <div class="tweeter-button">
+                    <span id="tweet">Tweet</span>
+                </div>
             </div>
         </dev>
     </div>
@@ -88,7 +90,10 @@
         <div id="profileContainer" class="hidden">
             <span id="title" class="name"></span>
             <img id="coverImg" src="">
-            <img id="profileImg" class="rounded" src="">
+            <div class="profile-edit">
+                <img id="profileImg" class="rounded" src="">
+                <div class="edit-button" onclick="openProfileForm()">Edit profile</div>
+            </div>
             <div id="description">
                 <span class="name"></span>
                 <p class="about"></p>
