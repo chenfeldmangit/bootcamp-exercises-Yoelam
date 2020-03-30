@@ -18,4 +18,22 @@ class DataAPI {
     static getUserTweets = this.#getJsonData("userTweets");
 
     static getFeedTweets = this.#getJsonData("feedTweets");
+
+    static getJsonSync(itemName) {
+        let data = localStorage.getItem(itemName);
+        return JSON.parse(data);
+    }
+
+    static getUserDataSync() {
+        this.getJsonSync("userData");
+    }
+
+    static getUserTweetsSync() {
+        this.getJsonSync("userTweets");
+    }
+
+    static getFeedTweetsSync() {
+        this.getJsonSync("feedTweets");
+    }
+
 }

@@ -92,7 +92,7 @@
             <img id="coverImg" src="">
             <div class="profile-edit">
                 <img id="profileImg" class="rounded" src="">
-                <div class="edit-button" onclick="openProfileForm()">Edit profile</div>
+                <div class="edit-button" onclick="openProfileEdit()">Edit profile</div>
             </div>
             <div id="description">
                 <span class="name"></span>
@@ -108,6 +108,22 @@
 
     <div class="trends">
         <span>Trends</span>
+    </div>
+
+    <div id="editPage" class="hidden" onclick="closeProfileEdit(event)">
+        <form id="editForm">
+            <div class="row">
+                <label>Name</label>
+                <input type="text" id="usernameInput" placeholder="Your name..">
+            </div>
+            <div class="row">
+                <label>About</label>
+                <textarea id="aboutInput" placeholder="Add a few words about yourself.." ></textarea>
+            </div>
+            <div class="row">
+                <div class="tweeter-button" id="saveUserData" class="gongButton" onclick="saveProfileData()">Save</div>
+            </div>
+        </form>
     </div>
 
     <template id="tweetTemplate">

@@ -17,6 +17,7 @@
   text-align: center;
   line-height: 2.5em;
   font-size: 0.8em;
+  cursor: pointer;
 }
 .tweeter-button:hover {
   filter: brightness(90%);
@@ -133,7 +134,7 @@
   cursor: pointer;
   border-radius: 2em;
   text-align: center;
-  line-height: 2em;
+  line-height: 1.8em;
   margin: 0.7em 0 0 0;
   padding: 0.1em 1em;
   position: absolute;
@@ -215,6 +216,68 @@
   fill: red;
   background-color: rgba(255, 0, 0, 0.1);
   border-radius: 50%;
+}
+
+#editPage {
+  position: fixed;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+#editPage.hidden {
+  display: none;
+}
+#editPage #editForm {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.6);
+  align-self: center;
+  background-color: #ffffff;
+  padding: 3em;
+  font-family: system-ui, Roboto, Ubuntu, sans-serif;
+}
+#editPage #editForm .row {
+  display: flex;
+  justify-content: start;
+}
+#editPage #editForm label {
+  width: 20%;
+  padding: 1.2em;
+  display: inline-block;
+}
+#editPage #editForm input[type=text], #editPage #editForm textarea {
+  width: 70%;
+  padding: 1em;
+  margin: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+#editPage #editForm textarea {
+  height: 10em;
+}
+#editPage #editForm #saveUserData {
+  width: 8em;
+}
+#editPage #editForm input[type=submit] {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  cursor: pointer;
+  float: right;
+  height: 2em;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.8em;
+  margin: 0.7em 0 0 0;
+  padding: 0.1em 1em;
+  align-items: end;
 }
 
 /*# sourceMappingURL=main.css.map */
