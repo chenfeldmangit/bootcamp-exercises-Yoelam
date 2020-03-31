@@ -55,16 +55,17 @@ function showProfilePage() {
     document.getElementById('feedContainer').classList.add('hidden');
     document.getElementById('profileContainer').classList.remove('hidden');
 
-    document.getElementById('coverImg').src = userData.coverImage;
-    document.getElementById('profileImg').src = userData.profileImage;
-    document.querySelector('#profileContainer .name').innerHTML = userData.name;
-    document.querySelector('#description .name').innerHTML = userData.name;
-    document.querySelector('#profileContainer .about').innerHTML = userData.about;
+    const profileData = JSON.parse(localStorage.getItem("userData"));
+    document.getElementById('coverImg').src = profileData.coverImage;
+    document.getElementById('profileImg').src = profileData.profileImage;
+    document.querySelector('#profileContainer .name').innerHTML = profileData.name;
+    document.querySelector('#description .name').innerHTML = profileData.name;
+    document.querySelector('#profileContainer .about').innerHTML = profileData.about;
 
     const tweetsContainer = document.getElementById("profileTweets");
     tweetsContainer.innerText = "";
     userTweets.forEach(item => {
-        addTweetItem(tweetsContainer, item, userData.name, userData.profileImage);
+        addTweetItem(tweetsContainer, item, profileData.name, profileData.profileImage);
     });
     // DataAPI.getUserTweets
     //     .then(data => {
@@ -92,6 +93,8 @@ function addTweetItem(tweetsContainer, tweet, nameOverride, profileImgOverride) 
 }
 
 openProfileEdit = () => {
+    document.querySelector("#usernameInput").value = userData.name;
+    document.querySelector("#aboutInput").value = userData.about;
     document.getElementById("editPage").classList.remove('hidden');
 }
 
