@@ -265,4 +265,51 @@
   width: 8em;
 }
 
+#tweetPage {
+  position: fixed;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+#tweetPage.hidden {
+  display: none;
+}
+#tweetPage #tweetForm {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.6);
+  align-self: center;
+  background-color: #ffffff;
+  padding: 3em;
+  font-family: system-ui, Roboto, Ubuntu, sans-serif;
+}
+#tweetPage #tweetForm .row {
+  display: flex;
+  justify-content: start;
+}
+#tweetPage #tweetForm label {
+  width: 20%;
+  padding: 1.2em;
+  display: inline-block;
+}
+#tweetPage #tweetForm input[type=text], #tweetPage #tweetForm textarea {
+  width: 70%;
+  padding: 1em;
+  margin: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+#tweetPage #tweetForm textarea {
+  height: 10em;
+}
+#tweetPage #tweetForm #addTweet {
+  width: 8em;
+}
+
 /*# sourceMappingURL=main.css.map */

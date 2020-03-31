@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="item-container" >
+            <div class="item-container" onclick="openTweetPage()">
                 <div class="tweeter-button">
                     <span id="tweet">Tweet</span>
                 </div>
@@ -110,7 +110,7 @@
         <span>Trends</span>
     </div>
 
-    <div id="editPage" class="hidden" onclick="closeProfileEdit(event)">
+    <div id="editPage" class="hidden" onclick="closePage(event)">
         <form id="editForm">
             <div class="row">
                 <label>Name</label>
@@ -121,7 +121,19 @@
                 <textarea id="aboutInput" placeholder="Add a few words about yourself.." ></textarea>
             </div>
             <div class="row">
-                <div class="tweeter-button" id="saveUserData" class="gongButton" onclick="saveProfileData()">Save</div>
+                <div class="tweeter-button" id="saveUserData" onclick="saveProfileData()">Save</div>
+            </div>
+        </form>
+    </div>
+
+    <div id="tweetPage" class="hidden" onclick="closePage(event)">
+        <form id="tweetForm">
+            <div class="row">
+                <label>Tweet</label>
+                <textarea id="tweetInput" placeholder="Add your tweet.." ></textarea>
+            </div>
+            <div class="row">
+                <div class="tweeter-button" id="addTweet" onclick="publishNewTweet()">Publish</div>
             </div>
         </form>
     </div>

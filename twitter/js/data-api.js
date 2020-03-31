@@ -1,11 +1,13 @@
 
 class DataAPI {
 
-    static #getJsonData = itemName => {
+    static getJsonData(itemName) {
         return new Promise((resolve, reject) => {
             try {
-                let data = localStorage.getItem(itemName);
-                resolve(JSON.parse(data));
+                setTimeout(function () {
+                    let data = localStorage.getItem(itemName);
+                    resolve(JSON.parse(data));
+                }, 1000);
             }
             catch (err) {
                 reject(err);
@@ -13,27 +15,34 @@ class DataAPI {
         })
     }
 
-    static getUserData = this.#getJsonData("userData");
-
-    static getUserTweets = this.#getJsonData("userTweets");
-
-    static getFeedTweets = this.#getJsonData("feedTweets");
-
-    static getJsonSync(itemName) {
-        let data = localStorage.getItem(itemName);
-        return JSON.parse(data);
+    static addTweetToItem(tweet, itemName) {
+        let tweets = JSON.parse(localStorage.getItem(itemName));
+        tweets.unshift(tweet);
+        localStorage.setItem(itemName, JSON.stringify(tweets));
     }
 
-    static getUserDataSync() {
-        this.getJsonSync("userData");
+    static addTweet(tweet) {
+        return new Promise((resolve, reject) => {
+            try {
+                DataAPI.addTweetToItem(tweet, "feedTweets");
+                DataAPI.addTweetToItem(tweet, "userTweets");
+            } catch(err) {
+                reject(err);
+            }
+        })
     }
 
-    static getUserTweetsSync() {
-        this.getJsonSync("userTweets");
+
+    static userData() {
+        return this.getJsonData("userData");
     }
 
-    static getFeedTweetsSync() {
-        this.getJsonSync("feedTweets");
+    static getUserTweets() {
+        return this.getJsonData("userTweets");
+    }
+
+    static getFeedTweets() {
+        return this.getJsonData("feedTweets");
     }
 
 }

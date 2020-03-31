@@ -4,14 +4,12 @@ userData = {
     "name": "ABCDef",
     "about": "read this if you must."
 }
-localStorage.setItem("userData", JSON.stringify(userData));
 
 feedTweets = [
     {"name": "DATAx", "tweet":  "Marketing plans are not what they used to be! Don’t go anywhere to join our #CMO Webinar presented by @cvent today at 1 p.m. EST, to learn how to #adapt and strategize your #marketing efforts seamlessly across many #channels. #virtualevent", "profileImage": "assets/user_icon2.jpg", "tweetImage": "assets/feed-ex1.jfif"},
     {"name": "Ethics in Bricks", "tweet":  "It’s only Quarantine if it’s in the Quarantine province of France. Otherwise it's just sparkling self isolation.", "profileImage": "assets/user_icon1.jpg", "tweetImage": "assets/feed-ex2.jfif"},
-    {"name": "Israel Israeli", "tweet":  "had a lot of time to write about something!", "profileImage": "assets/profile.png", "tweetImage": "assets/feed-ex1.jfif"}
+    // {"name": "Israel Israeli", "tweet":  "had a lot of time to write about something!", "profileImage": "assets/profile.png", "tweetImage": "assets/feed-ex1.jfif"}
 ]
-localStorage.setItem("feedTweets", JSON.stringify(feedTweets));
 
 userTweets = [
     {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"},
@@ -20,10 +18,20 @@ userTweets = [
     {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex2.jfif"},
     {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"}
 ]
-localStorage.setItem("userTweets", JSON.stringify(userTweets));
 
 window.onload = () => {
+    //localStorage.clear();
+    if (localStorage.getItem("userData") == null) {
+        localStorage.setItem("userData", JSON.stringify(userData));
+    }
+    if (localStorage.getItem("feedTweets") == null) {
+        localStorage.setItem("feedTweets", JSON.stringify(feedTweets));
+    }
+    if (localStorage.getItem("userTweets") == null) {
+        localStorage.setItem("userTweets", JSON.stringify(userTweets));
+    }
     showHomePage();
+
 }
 
 function scrollToTop() {
@@ -38,15 +46,15 @@ function showHomePage() {
 
     const tweetsContainer = document.getElementById("feedTweets");
     tweetsContainer.innerText = "";
-    feedTweets.forEach(item => {
-        addTweetItem(tweetsContainer, item);
-    });
-    // DataAPI.getFeedTweets
-    //     .then(data => {
-    //         data.forEach(item => {
-    //             addTweetItem(tweetsContainer, item);
-    //         });
-    //     })
+
+    tweetsContainer.innerText = "Loading...";
+    DataAPI.getFeedTweets()
+        .then(tweets => {
+            tweetsContainer.innerText = "";
+            tweets.forEach(tweet => {
+                addTweetItem(tweetsContainer, tweet);
+            });
+        })
 
     scrollToTop();
 }
@@ -64,15 +72,15 @@ function showProfilePage() {
 
     const tweetsContainer = document.getElementById("profileTweets");
     tweetsContainer.innerText = "";
-    userTweets.forEach(item => {
-        addTweetItem(tweetsContainer, item, profileData.name, profileData.profileImage);
-    });
-    // DataAPI.getUserTweets
-    //     .then(data => {
-    //         data.forEach(item => {
-    //             addTweetItem(tweetsContainer, item, userData.name, userData.profileImage);
-    //         });
-    //     })
+
+    tweetsContainer.innerText = "Loading...";
+    DataAPI.getUserTweets()
+        .then(tweets => {
+            tweetsContainer.innerText = "";
+            tweets.forEach(tweet => {
+                addTweetItem(tweetsContainer, tweet, profileData.name, profileData.profileImage);
+            });
+        })
 
 
     scrollToTop();
@@ -98,10 +106,30 @@ openProfileEdit = () => {
     document.getElementById("editPage").classList.remove('hidden');
 }
 
-closeProfileEdit = (event) => {
+closePage = (event) => {
     if (event.target.id === "editPage") {
         document.getElementById("editPage").classList.add('hidden');
     }
+    if (event.target.id === "tweetPage") {
+        document.getElementById("tweetPage").classList.add('hidden');
+    }
+}
+
+openTweetPage = () => {
+    document.getElementById("tweetPage").classList.remove('hidden');
+}
+
+function publishNewTweet() {
+    const tweetText = document.querySelector("#tweetInput").value;
+    let tweet = {
+      "name": userData.name,
+      "tweet":  tweetText,
+      "profileImage": userData.profileImage
+    }
+    DataAPI.addTweet(tweet);
+
+    document.getElementById("tweetPage").classList.add('hidden');
+    showHomePage();
 }
 
 function saveProfileData() {
