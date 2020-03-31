@@ -32,6 +32,22 @@ class DataAPI {
         })
     }
 
+    static deleteTweet(tweetId, storeItemName) {
+        let tweets = JSON.parse(localStorage.getItem(storeItemName));
+        let filtered = tweets.filter(item => {
+            return item.id !== tweetId;
+        });
+        localStorage.setItem(storeItemName, JSON.stringify(filtered));
+        console.log(filtered);
+    }
+
+    static async deleteTweetFromFeedTweets(tweetId) {
+        return this.deleteTweet(tweetId, "feedTweets");
+    }
+
+    static async deleteTweetFromUserTweets(tweetId) {
+        return this.deleteTweet(tweetId, "userTweets");
+    }
 
     static userData() {
         return this.getJsonData("userData");

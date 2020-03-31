@@ -6,17 +6,17 @@ userData = {
 }
 
 feedTweets = [
-    {"name": "DATAx", "tweet":  "Marketing plans are not what they used to be! Don’t go anywhere to join our #CMO Webinar presented by @cvent today at 1 p.m. EST, to learn how to #adapt and strategize your #marketing efforts seamlessly across many #channels. #virtualevent", "profileImage": "assets/user_icon2.jpg", "tweetImage": "assets/feed-ex1.jfif"},
-    {"name": "Ethics in Bricks", "tweet":  "It’s only Quarantine if it’s in the Quarantine province of France. Otherwise it's just sparkling self isolation.", "profileImage": "assets/user_icon1.jpg", "tweetImage": "assets/feed-ex2.jfif"},
-    // {"name": "Israel Israeli", "tweet":  "had a lot of time to write about something!", "profileImage": "assets/profile.png", "tweetImage": "assets/feed-ex1.jfif"}
+    {"id":"1", "name": "DATAx", "tweet":  "Marketing plans are not what they used to be! Don’t go anywhere to join our #CMO Webinar presented by @cvent today at 1 p.m. EST, to learn how to #adapt and strategize your #marketing efforts seamlessly across many #channels. #virtualevent", "profileImage": "assets/user_icon2.jpg", "tweetImage": "assets/feed-ex1.jfif"},
+    {"id":"2", "name": "Ethics in Bricks", "tweet":  "It’s only Quarantine if it’s in the Quarantine province of France. Otherwise it's just sparkling self isolation.", "profileImage": "assets/user_icon1.jpg", "tweetImage": "assets/feed-ex2.jfif"},
+    // {"id":"3", "name": "Israel Israeli", "tweet":  "had a lot of time to write about something!", "profileImage": "assets/profile.png", "tweetImage": "assets/feed-ex1.jfif"}
 ]
 
 userTweets = [
-    {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"},
-    {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex2.jfif"},
-    {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"},
-    {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex2.jfif"},
-    {"tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"}
+    {"id":"1", "tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"},
+    {"id":"2", "tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex2.jfif"},
+    {"id":"3", "tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"},
+    {"id":"4", "tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex2.jfif"},
+    {"id":"5", "tweet":  "had a lot of time to write about something!", "tweetImage": "assets/feed-ex1.jfif"}
 ]
 
 window.onload = () => {
@@ -96,6 +96,7 @@ function addTweetItem(tweetsContainer, tweet, nameOverride, profileImgOverride) 
     if (tweet.tweetImage != null) {
         tweetItem.querySelector("#feedItemMultimedia").src = tweet.tweetImage;
     }
+    tweetItem.querySelector(".delete-button").dataset.tweetid = tweet.id;
 
     tweetsContainer.appendChild(tweetItem);
 }
@@ -122,6 +123,7 @@ openTweetPage = () => {
 function publishNewTweet() {
     const tweetText = document.querySelector("#tweetInput").value;
     let tweet = {
+      "id": createUUID(),
       "name": userData.name,
       "tweet":  tweetText,
       "profileImage": userData.profileImage
@@ -147,4 +149,20 @@ function saveProfileData() {
 
     document.getElementById("editPage").classList.add('hidden');
     showProfilePage();
+}
+
+async function deleteTweet(element) {
+    let tweetId = element.dataset.tweetid;
+    await DataAPI.deleteTweetFromFeedTweets(tweetId);
+    await DataAPI.deleteTweetFromUserTweets(tweetId);
+    location.reload();
+}
+
+function createUUID(){
+    let dt = new Date().getTime();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (dt + Math.random()*16)%16 | 0;
+        dt = Math.floor(dt/16);
+        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
 }
