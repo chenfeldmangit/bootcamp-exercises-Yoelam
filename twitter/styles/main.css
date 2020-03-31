@@ -162,10 +162,24 @@
 
 .trends {
   width: 14%;
-  font-size: 16px;
   height: 20em;
-  border: 1px solid black;
   margin: 1em;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, Roboto, Ubuntu, sans-serif;
+}
+.trends #search {
+  font-size: 14px;
+  height: 3em;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 1.5em;
+  line-height: 2.5em;
+}
+.trends #search:focus {
+  outline: gray;
 }
 
 .tweet-item {

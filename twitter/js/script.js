@@ -1,3 +1,5 @@
+var activeMainPage = null;
+
 userData = {
     "coverImage": "assets/profileImage.png",
     "profileImage": "assets/profile.png",
@@ -30,13 +32,21 @@ window.onload = () => {
     if (localStorage.getItem("userTweets") == null) {
         localStorage.setItem("userTweets", JSON.stringify(userTweets));
     }
+    localStorage.removeItem("search");
     showHomePage();
-
 }
 
 function scrollToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+}
+
+function showMainPage() {
+    if (activeMainPage === "home") {
+        showHomePage();
+    } else if (activeMainPage === "profile") {
+        showProfilePage();
+    }
 }
 
 function showHomePage() {
@@ -56,10 +66,11 @@ function showHomePage() {
             });
         })
 
+    activeMainPage = "home";
     scrollToTop();
 }
 
-function showProfilePage() {
+async function showProfilePage() {
     document.getElementById('feedContainer').classList.add('hidden');
     document.getElementById('profileContainer').classList.remove('hidden');
 
@@ -74,16 +85,16 @@ function showProfilePage() {
     tweetsContainer.innerText = "";
 
     tweetsContainer.innerText = "Loading...";
-    DataAPI.getUserTweets()
-        .then(tweets => {
-            tweetsContainer.innerText = "";
-            tweets.forEach(tweet => {
-                addTweetItem(tweetsContainer, tweet, profileData.name, profileData.profileImage);
-            });
-        })
 
-
+    activeMainPage = "profile";
     scrollToTop();
+
+    let tweets = await DataAPI.getUserTweets();
+    tweetsContainer.innerText = "";
+    tweets.forEach(tweet => {
+        addTweetItem(tweetsContainer, tweet, profileData.name, profileData.profileImage);
+    });
+
 }
 
 function addTweetItem(tweetsContainer, tweet, nameOverride, profileImgOverride) {
@@ -131,7 +142,7 @@ function publishNewTweet() {
     DataAPI.addTweet(tweet);
 
     document.getElementById("tweetPage").classList.add('hidden');
-    showHomePage();
+    showMainPage();
 }
 
 function saveProfileData() {
@@ -155,7 +166,14 @@ async function deleteTweet(element) {
     let tweetId = element.dataset.tweetid;
     await DataAPI.deleteTweetFromFeedTweets(tweetId);
     await DataAPI.deleteTweetFromUserTweets(tweetId);
-    location.reload();
+    showMainPage();
+}
+
+async function search(element) {
+    let searchText = element.value;
+    let storeItem = (activeMainPage === "home") ? "feedTweets" : "userTweets";
+    await DataAPI.searchAndStoreTweets(searchText, storeItem);
+    showMainPage();
 }
 
 function createUUID(){
@@ -166,3 +184,4 @@ function createUUID(){
         return (c=='x' ? r :(r&0x3|0x8)).toString(16);
     });
 }
+

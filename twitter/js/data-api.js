@@ -32,6 +32,14 @@ class DataAPI {
         })
     }
 
+    static async searchAndStoreTweets(searchString, itemName) {
+        let tweets = JSON.parse(localStorage.getItem(itemName));
+        let results = tweets.filter(entry => {
+            return entry.tweet.toLowerCase().includes(searchString.toLowerCase());
+        })
+        localStorage.setItem("search", JSON.stringify(results));
+    }
+
     static deleteTweet(tweetId, storeItemName) {
         let tweets = JSON.parse(localStorage.getItem(storeItemName));
         let filtered = tweets.filter(item => {
@@ -54,11 +62,13 @@ class DataAPI {
     }
 
     static getUserTweets() {
-        return this.getJsonData("userTweets");
+        let itemName = localStorage.getItem("search") == null ? "userTweets" : "search";
+        return this.getJsonData(itemName);
     }
 
     static getFeedTweets() {
-        return this.getJsonData("feedTweets");
+        let itemName = localStorage.getItem("search") == null ? "feedTweets" : "search";
+        return this.getJsonData(itemName);
     }
 
 }
